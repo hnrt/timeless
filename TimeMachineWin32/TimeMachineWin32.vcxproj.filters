@@ -40,5 +40,8 @@
     <ClCompile Include="DebugPut.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HookFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
