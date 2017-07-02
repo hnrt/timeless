@@ -67,12 +67,12 @@ int gettimeofday(struct timeval* tv, struct timezone* tz)
     rc = (*pfnGetTimeOfDay)(tv, tz);
 
     long usec = tv->tv_usec + s_delta;
-    if (usec >= 1000000L)
+    if (usec >= 0L)
     {
         tv->tv_sec += usec / 1000000L;
         tv->tv_usec = usec % 1000000L;
     }
-    else if (usec < 0)
+    else //if (usec < 0)
     {
         tv->tv_sec -= (1000000L - 1 - usec) / 1000000L;
         tv->tv_usec = (1000000L - (-usec % 1000000L)) % 1000000L;
