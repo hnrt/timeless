@@ -70,7 +70,7 @@ namespace hnrt
         inline void adjust(FILETIME&);
         inline void fileTimeToLocalTime(const FILETIME&, SYSTEMTIME&);
         inline bool needToExclude(PCWSTR) const;
-        inline void* getHook(const char*);
+        inline void* getHook(const char*) const;
 
         HMODULE _hModule;
         long long _delta; // number of 100-nanosecond intervals
@@ -116,18 +116,11 @@ namespace hnrt
         return iter != _excludeSet.end();
     }
 
-    inline void* TimeMachine::getHook(const char* pszKey)
+    inline void* TimeMachine::getHook(const char* pszKey) const
     {
         std::string sKey(pszKey);
-        HookMap::iterator iter = _map.find(sKey);
-        if (iter != _map.end())
-        {
-            return iter->second;
-        }
-        else
-        {
-            return 0;
-        }
+        HookMap::const_iterator iter = _map.find(sKey);
+        return iter != _map.end() ? iter->second : 0;
     }
 
 }
