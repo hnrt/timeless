@@ -69,7 +69,7 @@ namespace hnrt
         inline long long localTimeToFileTime(const SYSTEMTIME&);
         inline void adjust(FILETIME&);
         inline void fileTimeToLocalTime(const FILETIME&, SYSTEMTIME&);
-        inline bool needToExclude(PCWSTR);
+        inline bool needToExclude(PCWSTR) const;
         inline void* getHook(const char*);
 
         HMODULE _hModule;
@@ -85,32 +85,32 @@ namespace hnrt
     {
         SYSTEMTIME utcTime = { 0 };
         TzSpecificLocalTimeToSystemTime(&_timeZone, &localTime, &utcTime);
-        FILETIME ft;
-        SystemTimeToFileTime(&utcTime, &ft);
-        LARGE_INTEGER gt;
-        gt.HighPart = ft.dwHighDateTime;
-        gt.LowPart = ft.dwLowDateTime;
-        return gt.QuadPart;
+        FILETIME fileTime;
+        SystemTimeToFileTime(&utcTime, &fileTime);
+        LARGE_INTEGER li;
+        li.HighPart = fileTime.dwHighDateTime;
+        li.LowPart = fileTime.dwLowDateTime;
+        return li.QuadPart;
     }
 
-    inline void TimeMachine::adjust(FILETIME& ft)
+    inline void TimeMachine::adjust(FILETIME& fileTime)
     {
         LARGE_INTEGER li;
-        li.HighPart = ft.dwHighDateTime;
-        li.LowPart = ft.dwLowDateTime;
+        li.HighPart = fileTime.dwHighDateTime;
+        li.LowPart = fileTime.dwLowDateTime;
         li.QuadPart += _delta;
-        ft.dwHighDateTime = li.HighPart;
-        ft.dwLowDateTime = li.LowPart;
+        fileTime.dwHighDateTime = li.HighPart;
+        fileTime.dwLowDateTime = li.LowPart;
     }
 
-    inline void TimeMachine::fileTimeToLocalTime(const FILETIME& ft, SYSTEMTIME& st)
+    inline void TimeMachine::fileTimeToLocalTime(const FILETIME& fileTime, SYSTEMTIME& localTime)
     {
-        SYSTEMTIME ut = { 0 };
-        FileTimeToSystemTime(&ft, &ut);
-        SystemTimeToTzSpecificLocalTime(&_timeZone, &ut, &st);
+        SYSTEMTIME utcTime = { 0 };
+        FileTimeToSystemTime(&fileTime, &utcTime);
+        SystemTimeToTzSpecificLocalTime(&_timeZone, &utcTime, &localTime);
     }
 
-    inline bool TimeMachine::needToExclude(PCWSTR pszKey)
+    inline bool TimeMachine::needToExclude(PCWSTR pszKey) const
     {
         CaseInsensitiveStringSet::const_iterator iter = _excludeSet.find(pszKey);
         return iter != _excludeSet.end();
