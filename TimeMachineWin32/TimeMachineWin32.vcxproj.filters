@@ -20,9 +20,6 @@
     <ClInclude Include="TimeMachine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="com_hideakin_lib_time_TimeMachine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DebugPut.h">
       <Filter>Header Files</Filter>
     </ClInclude>
