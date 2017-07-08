@@ -39,16 +39,16 @@ Create bin and lib directory.
 
 Download the JUnit jar 4.10 from http://junit.org/ if you don't have it yet and put the jar file in lib directory.
 
-Compile TimeMachine class.
+Compile TimeMachine class. (The path to bin directory in the JDK package is assmed to be set with PATH environment variable.)
 
-    "%JDK_HOME%\bin\javac.exe" -d bin src\com\hideakin\lib\time\TimeMachine.java
-    "%JDK_HOME%\bin\javac.exe" -d bin -cp bin;lib\junit-4.10.jar testsrc\com\hideakin\lib\time\TimeMachineTest.java
+    javac -d bin src\com\hideakin\lib\time\TimeMachine.java
+    javac -d bin -cp bin;lib\junit-4.10.jar testsrc\com\hideakin\lib\time\TimeMachineTest.java
 
 You'll have TimeMachine.class and TimeMachineTest.class in bin\com\hideakin\lib\time directory. (Note that on Windows a semicolon is used to separate paths with -cp option for javac.)
 
 Run the unit test class as follows.
 
-    "%JDK_HOME%\bin\java.exe" -cp bin;lib\junit-4.10.jar -Djava.library.path=<path_to_this_project>\TimeMachineWin32\bin\x64\Debug org.junit.runner.JUnitCore com.hideakin.lib.time.TimeMachineTest
+    java.exe -cp bin;lib\junit-4.10.jar -Djava.library.path=..\TimeMachineWin32\bin\x64\Debug org.junit.runner.JUnitCore com.hideakin.lib.time.TimeMachineTest
 
 You'll get the output something like this:
 
@@ -74,6 +74,8 @@ You'll get the output something like this:
 
     OK (4 tests)
 
+If you use junit 4.12, you might need hamcrest-core 1.3, too. Include it in -cp option.
 
+    java.exe -cp bin;lib\junit-4.12.jar;lib\hamcrest-core-1.3.jar -Djava.library.path=..\TimeMachineWin32\bin\x64\Debug org.junit.runner.JUnitCore com.hideakin.lib.time.TimeMachineTest
 
 
