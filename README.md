@@ -16,7 +16,7 @@ For example, if you want to set today to January 1st, 2001, call the following m
 
 After this call, `Calendar.getInstance()` returns the same time of January 1st, 2001, not of today.
 
-`TimeMachine.setDate()` accepts not only past dates but also future dates.
+`TimeMachine.setDate()` can be called as many times as you want and accepts not only past dates but also future dates.
 
 If you want to revert the current date back to today, call the following method in your test code:
 
@@ -24,7 +24,7 @@ If you want to revert the current date back to today, call the following method 
 
 A unit test class `TimeMachineTest` is provided in this project, too. You can find the usage of `TimeMachine` class in it.
 
-This unit test class has been tested on Windows 10 and Linux/Cent OS 6. The time-related classes working properly with `TimeMachine` class are `Date`, `Calendar`, `LocalDateTime`, and `ZonedDateTime`. The other time-related classes may work.
+This unit test class has been tested on Windows 10 and Linux/Cent OS 6. The time-related classes working properly with `TimeMachine` class are `Date`, `Calendar`, `LocalDateTime`, and `ZonedDateTime`. The other time-related classes are not tested but may work.
 
 ## How to run the unit test class on Windows platform
 
