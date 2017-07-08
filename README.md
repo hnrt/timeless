@@ -1,6 +1,6 @@
 # Timeless
 
-This is a Java class implementing Win32/Linux API hooking JNI for unit-testing date-time dependent applications.
+This project provides a Java class implementing Win32/Linux API hooking JNI for unit-testing date-time dependent applications.
 
 Suppose that you're using `Calendar.getInstance()` in your code and you want to change what it returns in order to test various situations in your unit test code, what would you do?
 
