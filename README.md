@@ -78,7 +78,7 @@ You'll get the output something like this:
 
     OK (4 tests)
 
-If you use junit 4.12, you might need hamcrest-core 1.3, too. Include it in -cp option.
+If you use JUnit jar 4.12, you might need Hamcrest Core jar 1.3, too. Include it in -cp option.
 
     java -cp bin;lib\junit-4.12.jar;lib\hamcrest-core-1.3.jar -Djava.library.path=..\TimeMachineWin32\bin\x64\Debug org.junit.runner.JUnitCore com.hideakin.lib.time.TimeMachineTest
 
