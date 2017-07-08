@@ -24,7 +24,7 @@ If you want to revert the current date back to today, call the following method 
 
 A unit test class `TimeMachineTest` is provided in this project, too. You can find the usage of `TimeMachine` class in it.
 
-This unit test class has been tested on Windows 10 and Linux/Cent OS 6. The time-related classes working properly with `TimeMachine` class are `Date`, `Calendar`, `LocalDateTime`, and `ZonedDateTime`.
+This unit test class has been tested on Windows 10 and Linux/Cent OS 6. The time-related classes working properly with `TimeMachine` class are `Date`, `Calendar`, `LocalDateTime`, and `ZonedDateTime`. The other time-related classes may work.
 
 ## How to run the unit test class on Windows platform
 
