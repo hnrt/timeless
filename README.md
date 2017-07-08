@@ -16,7 +16,7 @@ A unit test class `TimeMachineTest` has been tested on Windows 10 and Linux/Cent
 
 Prepare Microsoft Visual Studio. I'm using Microsoft Visual Studio Community 2017, which is available free of charge, on Windows 10 Pro x64.
 
-Set environment variable JDK_HOME to a path to Java Platform, Standard Edition 8 Development Kit（JDK 8）directory.
+First, set `JDK_HOME` environment variable to a path to Java Platform, Standard Edition 8 Development Kit（JDK 8）directory.
 
 Start Visual Studio IDE, open TimeMachineWin32.sln, and build the solution with the configuration set to `Debug|x64`.
 
@@ -84,7 +84,7 @@ You'll get the output something like this:
 
 Open a terminal emulator.
 
-Set environment variable JDK_HOME to a path to Java Platform, Standard Edition 8 Development Kit（JDK 8）directory.
+Set `JDK_HOME` environment variable to a path to Java Platform, Standard Edition 8 Development Kit（JDK 8）directory.
 
 Change the current directory to TimeMachineLinux in this project.
 
