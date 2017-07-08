@@ -1,7 +1,7 @@
 # Copyright (C) 2017 Hideaki Narita
 
 PROJECTROOT=..
-JAVADIR=$(PROJECTROOT)/TimeMachine
+JAVAPROJROOT=$(PROJECTROOT)/TimeMachine
 
 BINDIR=bin
 OBJDIR=obj
@@ -13,8 +13,12 @@ RM=rm -f
 RMDIRS=rm -fr
 MKDIRS=mkdir -p
 
+ifndef JDK_HOME
+$(error JDK_HOME is not set)
+endif
+
 INCLUDES=\
--I$(JAVADIR)/include \
+-I$(JAVAPROJROOT)/include \
 -I$(JDK_HOME)/include \
 -I$(JDK_HOME)/include/linux
 
