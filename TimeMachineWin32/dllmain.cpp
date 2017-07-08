@@ -28,19 +28,19 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD dwReason, LPVOID)
 }
 
 
-extern "C" JNIEXPORT void JNICALL Java_com_hideakin_lib_time_TimeMachine_setDate(JNIEnv *, jobject, jint year, jint month, jint day)
+extern "C" JNIEXPORT void JNICALL Java_com_hideakin_lib_time_TimeMachine_setDate(JNIEnv *, jclass, jint year, jint month, jint day)
 {
     TimeMachine::getInstance(s_hModule).setDate(year, month, day);
 }
 
 
-extern "C" JNIEXPORT void JNICALL Java_com_hideakin_lib_time_TimeMachine_setDelta(JNIEnv *, jobject, jlong delta)
+extern "C" JNIEXPORT void JNICALL Java_com_hideakin_lib_time_TimeMachine_setDelta(JNIEnv *, jclass, jlong delta)
 {
     TimeMachine::getInstance(s_hModule).setDelta(delta);
 }
 
 
-extern "C" JNIEXPORT void JNICALL Java_com_hideakin_lib_time_TimeMachine_reset(JNIEnv *, jobject)
+extern "C" JNIEXPORT void JNICALL Java_com_hideakin_lib_time_TimeMachine_reset(JNIEnv *, jclass)
 {
     TimeMachine::getInstance(s_hModule).reset();
 }

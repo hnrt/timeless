@@ -13,7 +13,7 @@ extern "C" {
  * Signature: (III)V
  */
 JNIEXPORT void JNICALL Java_com_hideakin_lib_time_TimeMachine_setDate
-  (JNIEnv *, jobject, jint, jint, jint);
+  (JNIEnv *, jclass, jint, jint, jint);
 
 /*
  * Class:     com_hideakin_lib_time_TimeMachine
@@ -21,7 +21,7 @@ JNIEXPORT void JNICALL Java_com_hideakin_lib_time_TimeMachine_setDate
  * Signature: (J)V
  */
 JNIEXPORT void JNICALL Java_com_hideakin_lib_time_TimeMachine_setDelta
-  (JNIEnv *, jobject, jlong);
+  (JNIEnv *, jclass, jlong);
 
 /*
  * Class:     com_hideakin_lib_time_TimeMachine
@@ -29,7 +29,7 @@ JNIEXPORT void JNICALL Java_com_hideakin_lib_time_TimeMachine_setDelta
  * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_com_hideakin_lib_time_TimeMachine_reset
-  (JNIEnv *, jobject);
+  (JNIEnv *, jclass);
 
 #ifdef __cplusplus
 }
