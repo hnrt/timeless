@@ -16,6 +16,8 @@ A unit test class `TimeMachineTest` has been tested on Windows 10 and Linux/Cent
 
 Prepare Microsoft Visual Studio. I'm using Microsoft Visual Studio Community 2017, which is available free of charge, on Windows 10 Pro x64.
 
+Set environment variable JDK_HOME to a path to Java Platform, Standard Edition 8 Development Kit（JDK 8）directory.
+
 Start Visual Studio IDE, open TimeMachineWin32.sln, and build the solution with the configuration set to `Debug|x64`.
 
 You can build the solution at a command line, too, as follows.
@@ -30,7 +32,7 @@ Build a JNI dynamic link library as follows.
 
 You'll have TimeMachine.dll in TimeMachineWin32\bin\x64\Debug directory.
 
-Then, start Eclipse, import the project in TimeMachine directory, and run the unit test class.
+Then, start Eclipse, import the project in TimeMachine directory, and run the unit test class with -Djava.library.path argument.
 
 You can run the unit test class at a command line, too, as follows.
 
@@ -43,7 +45,7 @@ Create bin and lib directory.
 
 Download the JUnit jar 4.10 from http://junit.org/ if you don't have it yet and put the jar file in lib directory.
 
-Compile TimeMachine class. (The path to bin directory in the JDK package is assmed to be set with PATH environment variable.)
+Compile TimeMachine class. (The path to bin directory in JDK 8 is assmed to be set with PATH environment variable.)
 
     javac -d bin src\com\hideakin\lib\time\TimeMachine.java
     javac -d bin -cp bin;lib\junit-4.10.jar testsrc\com\hideakin\lib\time\TimeMachineTest.java
@@ -78,8 +80,82 @@ You'll get the output something like this:
 
     OK (4 tests)
 
-If you use JUnit jar 4.12, you might need Hamcrest Core jar 1.3, too. Include it in -cp option.
+## How to run the unit test class on Linux platform
+
+Open a terminal emulator.
+
+Set environment variable JDK_HOME to a path to Java Platform, Standard Edition 8 Development Kit（JDK 8）directory.
+
+Change the current directory to TimeMachineLinux in this project.
+
+Build a JNI shared object as follows.
+
+    make
+
+You'll have libTimeMachine.so in bin directory.
+
+Change the current directory to TimeMachine in this project.
+
+Create bin and lib directory.
+
+    mkdir bin
+    mkdir lib
+
+Download the JUnit jar 4.10 from http://junit.org/ if you don't have it yet and put the jar file in lib directory.
+
+Compile TimeMachine class. (The path to bin directory in JDK 8 is assmed to be set with PATH environment variable.)
+
+    javac -d bin src/com/hideakin/lib/time/TimeMachine.java
+    javac -d bin -cp bin:lib/junit-4.10.jar testsrc/com/hideakin/lib/time/TimeMachineTest.java
+
+You'll have TimeMachine.class and TimeMachineTest.class in bin/com/hideakin/lib/time directory.
+
+In case of using one of Bourne shells, run the unit test class as follows.
+
+    LD_PRELOAD=../TimeMachineLinux/bin/libTimeMachine.so java -cp bin:lib/junit-4.10.jar -Djava.library.path=../TimeMachineLinux/bin org.junit.runner.JUnitCore com.hideakin.lib.time.TimeMachineTest
+
+If you use one of C shells, run as follows.
+
+    (setenv LD_PRELOAD ../TimeMachineLinux/bin/libTimeMachine.so ; java -cp bin:lib/junit-4.10.jar -Djava.library.path=../TimeMachineLinux/bin org.junit.runner.JUnitCore com.hideakin.lib.time.TimeMachineTest)
+
+In this way, it might be better to set LD_PRELOAD environment variable temporarily just in case.
+
+In any way, you'll get the output something like this:
+
+    JUnit version 4.10
+    .0=Sat Jul 08 16:10:02 JST 2017
+    Calendar=Mon Dec 31 16:10:02 JST 2001
+    Calendar=Fri Apr 01 16:10:02 JST 2050
+    9=Sat Jul 08 16:10:02 JST 2017
+    .0=Sat Jul 08 16:10:02 JST 2017
+    Date=Mon Dec 31 16:10:02 JST 2001
+    Date=Fri Apr 01 16:10:02 JST 2050
+    9=Sat Jul 08 16:10:02 JST 2017
+    .0=Sat Jul 08 16:10:02 JST 2017
+    LocalDateTime=2001-12-31T16:10:02.136
+    LocalDateTime=2050-04-01T16:10:02.136
+    9=Sat Jul 08 16:10:02 JST 2017
+    .0=Sat Jul 08 16:10:02 JST 2017
+    ZonedDateTime=2001-12-31T16:10:02.137+09:00[Japan]
+    ZonedDateTime=2050-04-01T16:10:02.138+09:00[Japan]
+    9=Sat Jul 08 16:10:02 JST 2017
+    
+    Time: 0.04
+    
+    OK (4 tests)
+
+## How to run the unit test class with JUnit jar 4.12
+
+If you run the unit test class with JUnit jar 4.12, you might need Hamcrest Core jar 1.3, too.
+
+On Windows,
 
     java -cp bin;lib\junit-4.12.jar;lib\hamcrest-core-1.3.jar -Djava.library.path=..\TimeMachineWin32\bin\x64\Debug org.junit.runner.JUnitCore com.hideakin.lib.time.TimeMachineTest
 
+On Linux with Bourne shell,
 
+    LD_PRELOAD=../TimeMachineLinux/bin/libTimeMachine.so java -cp bin:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar -Djava.library.path=../TimeMachineLinux/bin org.junit.runner.JUnitCore com.hideakin.lib.time.TimeMachineTest
+
+On Linux with C shell,
+
+    (setenv LD_PRELOAD ../TimeMachineLinux/bin/libTimeMachine.so ; java -cp bin:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar -Djava.library.path=../TimeMachineLinux/bin org.junit.runner.JUnitCore com.hideakin.lib.time.TimeMachineTest)
