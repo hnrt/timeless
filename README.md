@@ -118,7 +118,7 @@ If you use one of C shells, run as follows.
 
     (setenv LD_PRELOAD ../TimeMachineLinux/bin/libTimeMachine.so ; java -cp bin:lib/junit-4.10.jar -Djava.library.path=../TimeMachineLinux/bin org.junit.runner.JUnitCore com.hideakin.lib.time.TimeMachineTest)
 
-In this way, it might be better to set LD_PRELOAD environment variable temporarily just in case.
+In this way, it might be better to set `LD_PRELOAD` environment variable temporarily just in case.
 
 In any way, you'll get the output something like this:
 
@@ -146,7 +146,7 @@ In any way, you'll get the output something like this:
 
 ## How to run the unit test class with JUnit jar 4.12
 
-If you run the unit test class with JUnit jar 4.12, you might need Hamcrest Core jar 1.3, too.
+If you run the unit test class with JUnit jar 4.12, you might need Hamcrest Core jar, too.
 
 On Windows,
 
