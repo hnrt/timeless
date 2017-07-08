@@ -132,7 +132,7 @@ If you use one of C shells, run as follows.
 
     (setenv LD_PRELOAD ../TimeMachineLinux/bin/libTimeMachine.so ; java -cp bin:lib/junit-4.10.jar -Djava.library.path=../TimeMachineLinux/bin org.junit.runner.JUnitCore com.hideakin.lib.time.TimeMachineTest)
 
-`LD_PRELOAD` environment variable is the key to API hooking for Linux. This is a must, but in this way it might be better to set `LD_PRELOAD` environment variable temporarily just in case.
+`LD_PRELOAD` environment variable setting is the key to API hooking for Linux. This is a must for `TimeMachine` to work as expected, but in this way it might be better to set `LD_PRELOAD` environment variable temporarily just in case.
 
 In any way, you'll get the output something like this:
 
