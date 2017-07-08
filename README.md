@@ -2,7 +2,7 @@
 
 This is a Java class implementing Win32/Linux API hooking JNI for unit-testing date-time dependent applications.
 
-Suppose that you're using Calendar.getInstance() in your code and you want to change what it returns in order to test various situations in your unit test code, what would you do?
+Suppose that you're using `Calendar.getInstance()` in your code and you want to change what it returns in order to test various situations in your unit test code, what would you do?
 
 In general, as it is hard to mock a static method of the system library like Calendar.getInstance(), you would need to wrap it with your own class and then to mock the wrapping class. It would be fine if you could do so.
 
@@ -10,7 +10,21 @@ A class `TimeMachine` provided by this project tries to approach to this matter 
 
 With this class, you don't have to mock any time-related classes; you can easily set the current date as you want.
 
-A unit test class `TimeMachineTest` has been tested on Windows 10 and Linux/Cent OS 6. The classes working properly with TimeMachine class are Date, Calendar, LocalDateTime, and ZonedDateTime.
+For example, if you want to set today to January 1st, 2001, call the following method in your test code:
+
+    TimeMachine.setDate(2001, 1, 1);
+
+After this call, `Calendar.getInstance()` returns the same time of January 1st, 2001, not of today.
+
+`TimeMachine.setDate()` accepts not only past dates but also future dates.
+
+If you want to revert the current date back to today, call the following method in your test code:
+
+    TimeMachine.reset();
+
+A unit test class `TimeMachineTest` is provided in this project, too. You can find the usage of `TimeMachine` class in it.
+
+This unit test class has been tested on Windows 10 and Linux/Cent OS 6. The time-related classes working properly with `TimeMachine` class are `Date`, `Calendar`, `LocalDateTime`, and `ZonedDateTime`.
 
 ## How to run the unit test class on Windows platform
 
