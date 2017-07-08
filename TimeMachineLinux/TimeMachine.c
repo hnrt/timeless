@@ -14,7 +14,7 @@
 static long s_delta; // in microseconds
 
 
-JNIEXPORT void JNICALL Java_com_hideakin_lib_time_TimeMachine_setDate(JNIEnv* env, jobject obj, jint year, jint month, jint day)
+JNIEXPORT void JNICALL Java_com_hideakin_lib_time_TimeMachine_setDate(JNIEnv* env, jclass clsobj, jint year, jint month, jint day)
 {
     int (*pfnGetTimeOfDay)(struct timeval*, struct timezone*);
     struct timeval tv;
@@ -45,13 +45,13 @@ JNIEXPORT void JNICALL Java_com_hideakin_lib_time_TimeMachine_setDate(JNIEnv* en
 }
 
 
-JNIEXPORT void JNICALL Java_com_hideakin_lib_time_TimeMachine_setDelta(JNIEnv* env, jobject obj, jlong delta)
+JNIEXPORT void JNICALL Java_com_hideakin_lib_time_TimeMachine_setDelta(JNIEnv* env, jclass clsobj, jlong delta)
 {
     s_delta = delta * 1000L;
 }
 
 
-JNIEXPORT void JNICALL Java_com_hideakin_lib_time_TimeMachine_reset(JNIEnv* env, jobject obj)
+JNIEXPORT void JNICALL Java_com_hideakin_lib_time_TimeMachine_reset(JNIEnv* env, jclass clsobj)
 {
     s_delta = 0;
 }
@@ -78,7 +78,9 @@ int gettimeofday(struct timeval* tv, struct timezone* tz)
         tv->tv_usec = (1000000L - (-usec % 1000000L)) % 1000000L;
     }
 
+#ifdef TIMEMACHINE_DEBUG
     printf("gettimeofday: %ld %ld\n", (long)tv->tv_sec, (long)tv->tv_usec);
+#endif //TIMEMACHINE_DEBUG
 
     return rc;
 }
