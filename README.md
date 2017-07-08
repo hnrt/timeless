@@ -6,15 +6,19 @@ Suppose that you're using Calendar.getInstance() in your code and you want to ch
 
 In general, as it is hard to mock a static method of the system library like Calendar.getInstance(), you would need to wrap it with your own class and then to mock the wrapping class. It would be fine if you could do so.
 
-A class, "TimeMachine", provided by this project tries to approach to this matter in a different way. This is not a universal solution, but it might work very well in certain situations.
+A class `TimeMachine` provided by this project tries to approach to this matter in a different way. This is not a universal solution, but it might work very well in certain situations.
 
 With this class, you don't have to mock any time-related classes; you can easily set the current date as you want.
 
-A unit test class, "TimeMachineTest", has been tested on Windows 10 and Linux/Cent OS 6. The classes working properly with TimeMachine class are Date, Calendar, LocalDateTime, and ZonedDateTime.
+A unit test class `TimeMachineTest` has been tested on Windows 10 and Linux/Cent OS 6. The classes working properly with TimeMachine class are Date, Calendar, LocalDateTime, and ZonedDateTime.
 
 ## How to run the unit test class on Windows platform
 
 Prepare Microsoft Visual Studio. I'm using Microsoft Visual Studio Community 2017, which is available free of charge, on Windows 10 Pro x64.
+
+Start Visual Studio IDE, open TimeMachineWin32.sln, and build the solution with the configuration set to `Debug|x64`.
+
+You can build the solution at a command line, too, as follows.
 
 Open x64 Native Tools Command Prompt for VS 2017.
 
@@ -48,7 +52,7 @@ You'll have TimeMachine.class and TimeMachineTest.class in bin\com\hideakin\lib\
 
 Run the unit test class as follows.
 
-    java.exe -cp bin;lib\junit-4.10.jar -Djava.library.path=..\TimeMachineWin32\bin\x64\Debug org.junit.runner.JUnitCore com.hideakin.lib.time.TimeMachineTest
+    java -cp bin;lib\junit-4.10.jar -Djava.library.path=..\TimeMachineWin32\bin\x64\Debug org.junit.runner.JUnitCore com.hideakin.lib.time.TimeMachineTest
 
 You'll get the output something like this:
 
@@ -76,6 +80,6 @@ You'll get the output something like this:
 
 If you use junit 4.12, you might need hamcrest-core 1.3, too. Include it in -cp option.
 
-    java.exe -cp bin;lib\junit-4.12.jar;lib\hamcrest-core-1.3.jar -Djava.library.path=..\TimeMachineWin32\bin\x64\Debug org.junit.runner.JUnitCore com.hideakin.lib.time.TimeMachineTest
+    java -cp bin;lib\junit-4.12.jar;lib\hamcrest-core-1.3.jar -Djava.library.path=..\TimeMachineWin32\bin\x64\Debug org.junit.runner.JUnitCore com.hideakin.lib.time.TimeMachineTest
 
 
