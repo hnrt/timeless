@@ -23,6 +23,9 @@
     <ClInclude Include="DebugPut.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -40,5 +43,8 @@
     <ClCompile Include="HookFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TimeMachineWin32.rc" />
   </ItemGroup>
 </Project>
